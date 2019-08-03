@@ -7,7 +7,7 @@ const defaultconf = {
 	forwardRef: false
 };
 
-function ChannelEventImpl<P extends ChannelProp, T extends ReactComponent<P> = ReactComponent<P>>(Comp: T, conf: IConf) {
+function ChannelEventImpl<P extends ChannelProps, T extends ReactComponent<P> = ReactComponent<P>>(Comp: T, conf: IConf) {
 	conf = { ...defaultconf, ...conf };
 	const base = conf.pure ? React.PureComponent : React.Component;
 
@@ -45,7 +45,7 @@ function ChannelEventImpl<P extends ChannelProp, T extends ReactComponent<P> = R
  * @param conf
  */
 export function ChannelEvent(conf?: IConf) {
-	return function<P extends ChannelProp, T extends ReactComponent<P>>(component: T): T {
+	return function<P extends ChannelProps, T extends ReactComponent<P>>(component: T): T {
 		return (ChannelEventImpl(component, conf) as any) as T;
 	};
 }
@@ -56,7 +56,7 @@ interface IConf {
 	channelId?: string;
 }
 
-export interface ChannelProp {
+export interface ChannelProps {
 	channel: Channel;
 }
 

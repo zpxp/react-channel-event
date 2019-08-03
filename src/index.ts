@@ -1,4 +1,4 @@
-export { ChannelEvent, ChannelProp } from "./Decorator";
+export { ChannelEvent, ChannelProps } from "./Decorator";
 export {
 	ChannelEventProvider,
 	ChannelEventContext,

@@ -8,7 +8,7 @@ React Component decorator and context provider to expose a `channel-event` `hub`
 
 ``` tsx
 
-import { ChannelEvent, ChannelProp } from "react-channel-event";
+import { ChannelEvent, ChannelProps } from "react-channel-event";
 import { take, fork } from "channel-event";
 
 
@@ -55,7 +55,7 @@ export default class MyComponent extends React.PureComponent<Props, State> {
     }
 }
 
-interface Props extends ChannelProp {}
+interface Props extends ChannelProps {}
 
 interface State {
     count: number
