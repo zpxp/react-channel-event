@@ -1,7 +1,2 @@
 export { ChannelEvent, ChannelProps } from "./Decorator";
-export {
-	ChannelEventProvider,
-	ChannelEventContext,
-	IChannelEventContext,
-	addGeneratorMiddleware as channelEventAddGeneratorMiddleware
-} from "./ContextProvider";
+export { ChannelEventProvider, ChannelEventContext, IChannelEventContext } from "./ContextProvider";

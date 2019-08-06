@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ChannelEventContext, IChannelEventContext } from "./ContextProvider";
-import { Channel } from "channel-event";
+import { IChannel } from "channel-event";
+import { IChannelMessage } from "channel-event/lib/channel";
 
 const defaultconf = {
 	pure: true,
@@ -11,7 +12,7 @@ function ChannelEventImpl<P extends ChannelProps, T extends ReactComponent<P> = 
 	conf = { ...defaultconf, ...conf };
 	const base = conf.pure ? React.PureComponent : React.Component;
 
-	class ChannelEvent extends base<P, { channel: Channel }> {
+	class ChannelEvent extends base<P, { channel: IChannel }> {
 		static _CHANNEL_EVENT = true;
 
 		static contextType = ChannelEventContext;
@@ -20,7 +21,7 @@ function ChannelEventImpl<P extends ChannelProps, T extends ReactComponent<P> = 
 		constructor(props: P, context: IChannelEventContext) {
 			super(props);
 			this.state = {
-				channel: context.hub.newChannel(conf.channelId)
+				channel: context && context.hub && context.hub.newChannel(conf.channelId)
 			};
 		}
 
@@ -30,7 +31,7 @@ function ChannelEventImpl<P extends ChannelProps, T extends ReactComponent<P> = 
 		}
 
 		componentWillUnmount() {
-			this.state.channel.dispose();
+			this.state.channel && this.state.channel.dispose();
 		}
 	}
 
@@ -53,11 +54,14 @@ export function ChannelEvent(conf?: IConf) {
 interface IConf {
 	pure?: boolean;
 	forwardRef?: boolean;
+	/**
+	 * ID for `IChannel`. Allows two way communication in `IChannel.send` and `IChannel.listen`
+	 */
 	channelId?: string;
 }
 
-export interface ChannelProps {
-	channel: Channel;
+export interface ChannelProps<Actions extends { [type: string]: IChannelMessage<any> } = any> {
+	channel: IChannel<Actions>;
 }
 
 type ReactComponent<P = any, S = any> = new (props: P, context?: any) => React.Component<P, S>;

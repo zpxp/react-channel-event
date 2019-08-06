@@ -1,10 +1,28 @@
 # react-channel-event
 
+React Component decorator and context provider to expose a `channel-event` `IHub` to children components.
+
+### Installation
+
 `yarn add react-channel-event`
 
 `npn install react-channel-event`
 
-React Component decorator and context provider to expose a `channel-event` `hub` to components.
+
+### Use
+
+First, wrap your app with the `<ChannelEventProvider>` context element.
+
+``` tsx
+
+			<ChannelEventProvider>
+				<App />
+			</ChannelEventProvider>
+
+```
+
+Alternatively, you can wrap individial pages/sections with `<ChannelEventProvider>` to 'jail' events to those pages/sections only. An event will only be sent to components that exist under the same `<ChannelEventProvider>` context.
+
 
 ``` tsx
 

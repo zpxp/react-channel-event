@@ -1,23 +1,32 @@
 import * as React from "react";
-import { Hub, createHub } from "channel-event";
-
-const hub = createHub();
-const context = { hub };
+import { createHub, IHub } from "channel-event";
 
 /** Context to hold global channel hub */
-export const ChannelEventContext = React.createContext<IChannelEventContext>(context);
-
+export const ChannelEventContext = React.createContext<IChannelEventContext>({} as any);
 
 /**
  * React context to provide a global `hub` to child components
  */
-export class ChannelEventProvider extends React.PureComponent<{}, State> {
+export class ChannelEventProvider extends React.PureComponent<Props, State> {
+	hub: IHub;
 	constructor(props: {}) {
 		super(props);
 
+		this.hub = createHub();
+
 		this.state = {
-			context: context
+			context: this.props.hub !== undefined ? { hub: this.props.hub } : { hub: this.hub }
 		};
+	}
+
+	componentWillUnmount() {
+		this.hub.dispose();
+	}
+
+	componentDidUpdate(prevProps: Props) {
+		if (this.props.hub !== prevProps.hub) {
+			this.setState({ context: { hub: this.props.hub } });
+		}
 	}
 
 	render() {
@@ -26,11 +35,14 @@ export class ChannelEventProvider extends React.PureComponent<{}, State> {
 }
 
 export interface IChannelEventContext {
-	hub: Hub;
+	/** Override built in hub with supplied instance */
+	hub: IHub;
 }
 
 interface State {
 	context: IChannelEventContext;
 }
 
-export const addGeneratorMiddleware: typeof hub.addGeneratorMiddleware = hub.addGeneratorMiddleware;
+interface Props {
+	hub?: IHub;
+}
