@@ -9,6 +9,11 @@
     "dist/**/*",
     "lib/**/*"
   ],
+  "keywords": [
+    "react",
+    "channel-event",
+    "events"
+  ],
   "scripts": {
     "analyze": "source-map-explorer dist/js/main.*",
     "build": "yarn install && node scripts/build.js",
