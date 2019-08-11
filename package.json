@@ -2,7 +2,7 @@
   "name": "react-channel-event",
   "version": "2.0.3",
   "main": "lib/index.js",
-  "repository": "git@github.com:zpxp/channel-event.git",
+  "repository": "git@github.com:zpxp/react-channel-event.git",
   "author": "brendo",
   "license": "MIT",
   "files": [
