@@ -1,8 +1,16 @@
 import * as React from "react";
 import { createHub, IHub } from "channel-event";
 
+const win: any = window;
+
+win["react-channel-event"] = win["react-channel-event"] || {};
+
+if (!win["react-channel-event"].context) {
+	// store the context on the window object so if multiple copies of the lib exist in node modules, context still behaves correctly
+	win["react-channel-event"].context = React.createContext<IChannelEventContext>({} as any);
+}
 /** Context to hold global channel hub */
-export const ChannelEventContext = React.createContext<IChannelEventContext>({} as any);
+export const ChannelEventContext = win["react-channel-event"].context;
 
 /**
  * React context to provide a global `hub` to child components
