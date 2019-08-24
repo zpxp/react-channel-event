@@ -1,5 +1,7 @@
 # react-channel-event
 
+![Bundlephobia gzip + minified](https://badgen.net/bundlephobia/minzip/react-channel-event)
+
 React Component decorator and context provider to expose a `channel-event` `IHub` to children components.
 
 ### Installation
