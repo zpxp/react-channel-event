@@ -1,6 +1,6 @@
 {
   "name": "react-channel-event",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "main": "lib/index.js",
   "repository": "git@github.com:zpxp/react-channel-event.git",
   "author": "brendo",
@@ -50,6 +50,7 @@
     "jest-resolve": "^24.7.1",
     "jsdom": "^14.0.0",
     "mini-css-extract-plugin": "^0.6.0",
+    "node-sass": "^4.13.0",
     "path": "^0.12.7",
     "pnp-webpack-plugin": "1.4.1",
     "postcss-flexbugs-fixes": "^4.1.0",
@@ -63,7 +64,6 @@
   },
   "dependencies": {
     "channel-event": "^3.1.*",
-    "node-sass": "^4.13.0",
     "react": "^16.1.0"
   }
 }
