@@ -5,7 +5,7 @@ import { IChannelMessage } from "channel-event/lib/channel";
 
 const defaultconf = {
 	pure: true,
-	forwardRef: false
+	forwardRef: true
 };
 
 function ChannelEventImpl<P extends ChannelProps, T extends ReactComponent<P> = ReactComponent<P>>(Comp: T, conf: IConf) {
