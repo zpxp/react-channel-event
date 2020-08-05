@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "analyze": "source-map-explorer dist/js/main.*",
-    "build": "yarn install && node scripts/build.js",
+    "build": "node scripts/build.js",
     "test": "node scripts/test.js --passWithNoTests",
     "new-version-patch": " yarn version --new-version patch",
     "new-version": " yarn version",
