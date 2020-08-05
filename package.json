@@ -64,7 +64,7 @@
     "webpack": "4.30.0"
   },
   "peerDependencies": {
-    "channel-event": "^3.1.*",
+    "channel-event": "^3.1.0",
     "react": "^16.1.0"
   }
 }

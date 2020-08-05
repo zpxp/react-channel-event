@@ -60,7 +60,7 @@ interface IConf {
 }
 
 export interface ChannelProps<Actions extends { [type: string]: IChannelMessage<any> } = any> {
-	channel: IChannel<Actions>;
+	channel?: IChannel<Actions>;
 }
 
 type ReactComponent<P = any, S = any> = new (props: P, context?: any) => React.Component<P, S>;
