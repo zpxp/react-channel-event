@@ -32,7 +32,12 @@ function ChannelEventImpl<P extends ChannelProps, T extends ReactComponent<P> = 
 		}
 
 		componentWillUnmount() {
-			this.state.channel && this.state.channel.dispose();
+			const chan = this.state.channel;
+			if (chan) {
+				setTimeout(() => {
+					chan.dispose();
+				});
+			}
 		}
 	}
 
@@ -45,7 +50,7 @@ function ChannelEventImpl<P extends ChannelProps, T extends ReactComponent<P> = 
  * @param conf
  */
 export function ChannelEvent(conf?: IConf) {
-	return function<P extends ChannelProps, T extends ReactComponent<P>>(component: T): T {
+	return function <P extends ChannelProps, T extends ReactComponent<P>>(component: T): T {
 		return (ChannelEventImpl(component, conf) as any) as T;
 	};
 }
