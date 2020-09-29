@@ -12,13 +12,13 @@ function ChannelEventImpl<P extends ChannelProps, T extends ReactComponent<P> = 
 	conf = { ...defaultconf, ...conf };
 	const base = conf.pure ? React.PureComponent : React.Component;
 
-	class ChannelEvent extends base<P & { __internal_ref: any }, { channel: IChannel }> {
+	class ChannelEvent extends base<P & { _internal_ref: any }, { channel: IChannel }> {
 		static _CHANNEL_EVENT = true;
 
 		static contextType = ChannelEventContext;
 		context: IChannelEventContext;
 
-		constructor(props: P & { __internal_ref: any }, context: IChannelEventContext) {
+		constructor(props: P & { _internal_ref: any }, context: IChannelEventContext) {
 			super(props);
 			this.state = {
 				channel: context && context.hub && context.hub.newChannel(conf.channelId)
@@ -27,8 +27,8 @@ function ChannelEventImpl<P extends ChannelProps, T extends ReactComponent<P> = 
 
 		render() {
 			const El = Comp as any;
-			const { __internal_ref, ...props } = this.props;
-			return <El {...props} channel={this.state.channel} ref={__internal_ref} />;
+			const { _internal_ref, ...props } = this.props;
+			return <El {...props} channel={this.state.channel} ref={_internal_ref} />;
 		}
 
 		componentWillUnmount() {
@@ -41,7 +41,7 @@ function ChannelEventImpl<P extends ChannelProps, T extends ReactComponent<P> = 
 		}
 	}
 
-	return conf.forwardRef ? React.forwardRef((props, ref) => <ChannelEvent {...(props as any)} __internal_ref={ref} />) : ChannelEvent;
+	return conf.forwardRef ? React.forwardRef((props, ref) => <ChannelEvent {...(props as any)} _internal_ref={ref} />) : ChannelEvent;
 }
 
 /**
